@@ -4,7 +4,7 @@ const cors = require('cors');
 const { scrapeQC } = require('./scraper');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Allow your GitHub Pages site + localhost for dev.
 // Add any other domains you host the frontend on.
