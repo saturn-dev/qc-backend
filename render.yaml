@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: qc-scraper
+    runtime: node
+    plan: starter   # free tier also works but will cold-start
+    region: oregon
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: PUPPETEER_CACHE_DIR
+        value: /opt/render/.cache/puppeteer
