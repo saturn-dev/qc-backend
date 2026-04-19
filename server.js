@@ -6,23 +6,8 @@ const { scrapeQC } = require('./scraper');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Allow your GitHub Pages site + localhost for dev.
-// Add any other domains you host the frontend on.
-const ALLOWED_ORIGINS = [
-  'https://deepinmycloset.com',
-  'https://www.deepinmycloset.com',
-  'http://localhost:3000',
-  'http://localhost:5500',
-  'http://127.0.0.1:5500',
-];
-
-app.use(cors({
-  origin: (origin, cb) => {
-    if (!origin) return cb(null, true); // allow curl / Postman
-    if (ALLOWED_ORIGINS.includes(origin)) return cb(null, true);
-    cb(new Error(`CORS blocked: ${origin}`));
-  },
-}));
+// Allow all origins — this is a public read-only API, safe to open up
+app.use(cors());
 
 app.get('/', (_req, res) => {
   res.json({ ok: true, service: 'qc-scraper', uptime: process.uptime() });
